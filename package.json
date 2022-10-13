@@ -24,12 +24,8 @@
 		"@prisma/client": "^4.4.0",
 		"@solidjs/router": "^0.5.0",
 		"@tanstack/solid-query": "^4.11.0",
-		"@trpc/client": "10.0.0-proxy-beta.18",
-		"@trpc/server": "10.0.0-proxy-beta.18",
 		"prisma": "^4.4.0",
 		"solid-js": "^1.5.1",
-		"solid-trpc": "0.0.2-beta.1",
-		"superjson": "^1.10.1",
 		"zod": "^3.19.1",
 		"zod-form-data": "^1.2.2"
 	}

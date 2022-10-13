@@ -5,12 +5,8 @@ specifiers:
   '@prisma/client': ^4.4.0
   '@solidjs/router': ^0.5.0
   '@tanstack/solid-query': ^4.11.0
-  '@trpc/client': 10.0.0-proxy-beta.18
-  '@trpc/server': 10.0.0-proxy-beta.18
   prisma: ^4.4.0
   solid-js: ^1.5.1
-  solid-trpc: 0.0.2-beta.1
-  superjson: ^1.10.1
   typescript: ^4.8.2
   vite: ^3.0.9
   vite-plugin-pages: ^0.26.0
@@ -25,12 +21,8 @@ dependencies:
   '@prisma/client': 4.4.0_prisma@4.4.0
   '@solidjs/router': 0.5.0_solid-js@1.5.1
   '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
-  '@trpc/client': 10.0.0-proxy-beta.18_tqbku34r5qoefahmp7wdx2g5ny
-  '@trpc/server': 10.0.0-proxy-beta.18
   prisma: 4.4.0
   solid-js: 1.5.1
-  solid-trpc: 0.0.2-beta.1_4yvi3mrblrh7zkfur6iny7ityu
-  superjson: 1.10.1
   zod: 3.19.1
   zod-form-data: 1.2.2_zod@3.19.1
 
@@ -1567,18 +1559,6 @@ packages:
       solid-js: 1.5.1
     dev: false
 
-  /@trpc/client/10.0.0-proxy-beta.18_tqbku34r5qoefahmp7wdx2g5ny:
-    resolution: {integrity: sha512-jRL2muN9sGrK/EPifZmii0206KcjxW7LGsLVfpIv9ol5PvZQSBxUqmFTlS41LyU4BzfueYHByNDEsU17YCxqzw==}
-    peerDependencies:
-      '@trpc/server': 10.0.0-proxy-beta.18
-    dependencies:
-      '@trpc/server': 10.0.0-proxy-beta.18
-    dev: false
-
-  /@trpc/server/10.0.0-proxy-beta.18:
-    resolution: {integrity: sha512-XX6ENhyqacEERi9Zj93fcRJNeWIgsAGRCUrIrD+RCR1XNZfHIpetOa0zI1X1KQN1WL5HaprRr8SfECxDtxe+CQ==}
-    dev: false
-
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
     dependencies:
@@ -1848,13 +1828,6 @@ packages:
     dependencies:
       safe-buffer: 5.1.2
     dev: true
-
-  /copy-anything/3.0.2:
-    resolution: {integrity: sha512-CzATjGXzUQ0EvuvgOCI6A4BGOo2bcVx8B+eC2nF862iv9fopnPQwlrbACakNCHRIJbCSBj+J/9JeDf60k64MkA==}
-    engines: {node: '>=12.13'}
-    dependencies:
-      is-what: 4.1.7
-    dev: false
 
   /core-js-compat/3.25.5:
     resolution: {integrity: sha512-ovcyhs2DEBUIE0MGEKHP4olCUW/XYte3Vroyxuh38rD1wAO4dHohsovUC4eAOuzFxE6b+RXvBU3UZ9o0YhUTkA==}
@@ -2586,6 +2559,7 @@ packages:
   /is-what/4.1.7:
     resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
     engines: {node: '>=12.13'}
+    dev: true
 
   /isarray/2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
@@ -3007,21 +2981,6 @@ packages:
       solid-js: 1.5.1
     dev: true
 
-  /solid-trpc/0.0.2-beta.1_4yvi3mrblrh7zkfur6iny7ityu:
-    resolution: {integrity: sha512-F+A3unleO0aFm4cImQZaxXiVXF6qJD9jS9X452irqd6GVF2kVm19EPhWFEhJfjhOwyvmI0QgNtGZDOUcKtIGuA==}
-    peerDependencies:
-      '@tanstack/query-core': ^4.6.1
-      '@tanstack/solid-query': ^4.6.1
-      '@trpc/client': ^10.0.0-proxy-beta.10
-      '@trpc/server': ^10.0.0-proxy-beta.10
-      solid-js: ^1.5.3
-    dependencies:
-      '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
-      '@trpc/client': 10.0.0-proxy-beta.18_tqbku34r5qoefahmp7wdx2g5ny
-      '@trpc/server': 10.0.0-proxy-beta.18
-      solid-js: 1.5.1
-    dev: false
-
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -3092,13 +3051,6 @@ packages:
     resolution: {integrity: sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw==}
     engines: {node: '>=10'}
     dev: true
-
-  /superjson/1.10.1:
-    resolution: {integrity: sha512-7fvPVDHmkTKg6641B9c6vr6Zz5CwPtF9j0XFExeLxJxrMaeLU2sqebY3/yrI3l0K5zJ+H9QA3H+lIYj5ooCOkg==}
-    engines: {node: '>=10'}
-    dependencies:
-      copy-anything: 3.0.2
-    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
