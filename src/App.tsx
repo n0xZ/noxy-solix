@@ -1,13 +1,10 @@
 import type { Component } from 'solid-js'
+import { useRoutes } from '@solidjs/router'
 
-import logo from './logo.svg'
-
+import routes from '~solid-pages'
 const App: Component = () => {
-	return (
-		<div>
-			<p>Hello world!</p>
-		</div>
-	)
+	const Routes = useRoutes(routes)
+	return <Routes />
 }
 
 export default App

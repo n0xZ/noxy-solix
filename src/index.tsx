@@ -1,16 +1,18 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
 import { QueryClient, QueryClientProvider } from '@tanstack/solid-query'
+import { TRPCProvider } from 'solid-trpc'
 import { Router } from '@solidjs/router'
-import './index.css'
+import { client } from './utils/trpc'
 import App from './App'
+import 'virtual:windi.css'
 const queryClient = new QueryClient()
 render(
 	() => (
 		<Router>
-			<QueryClientProvider client={queryClient}>
+			<TRPCProvider client={client} queryClient={queryClient}>
 				<App />
-			</QueryClientProvider>
+			</TRPCProvider>
 		</Router>
 	),
 	document.getElementById('root') as HTMLElement
