@@ -13,8 +13,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
-    - name: GitHub Action for pnpm
-      uses: znck/pnpm@v0.1.0-alpha.1
+    - name: Install pnpm global dep.
+      run: npm install -g pnpm
 
     - name: Install dependencies
       run: pnpm install
