@@ -1,8 +1,9 @@
-import { Link, Navigate, useNavigate } from '@solidjs/router'
+import { Link, useNavigate } from '@solidjs/router'
 import { AuthError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
+import { FormField } from '~/components/FormField'
 import { supabase } from '~/lib/supabase'
 
 const loginSchema = zfd.formData({
@@ -22,7 +23,7 @@ type Errors = {
 export default function Register() {
 	const [errors, setErrors] = createSignal<Errors>({} as Errors)
 	const [needsEmailConfirm, setNeedsEmailConfirm] = createSignal(false)
-	const navigate = useNavigate()
+
 	const onSubmit = async (e: FormEvent) => {
 		const result = loginSchema.safeParse(new FormData(e.currentTarget))
 		e.preventDefault()
@@ -50,28 +51,30 @@ export default function Register() {
 						onSubmit={onSubmit}
 						class="flex flex-col justify-center container mx-auto space-y-2 "
 					>
-						<aside class="flex flex-col justify-center max-w-2xl">
-							<label html-for="email">Correo electrónico</label>
-							<input
-								type="email"
-								name="email"
-								placeholder="o.gonzalo1031@miemail.com"
-							/>
-							<span class="h-6 text-red-500">
-								<Show when={errors()?.fieldErrors?.formErrors.fieldErrors.email}>
-									{errors()?.fieldErrors?.formErrors.fieldErrors.email?.[0]}
-								</Show>
-							</span>
-						</aside>
-						<aside class="flex flex-col justify-center max-w-2xl">
-							<label html-for="password">Contraseña</label>
-							<input type="password" name="password" placeholder="gonzalo123*" />
-							<span class="h-6 text-red-500">
-								<Show when={errors()?.fieldErrors?.formErrors.fieldErrors.password}>
-									{errors()?.fieldErrors?.formErrors.fieldErrors.password?.[0]}
-								</Show>
-							</span>
-						</aside>
+						<FormField
+							label="Correo electrónico"
+							type="email"
+							name="email"
+							placeholder="o.gonzalo1232131@miemail.com"
+							data-test-id="email-input"
+							errors_data_test_id="email-errors"
+							errors={
+								errors()?.fieldErrors?.formErrors.fieldErrors.email &&
+								errors()?.fieldErrors?.formErrors.fieldErrors.email?.[0]
+							}
+						/>
+						<FormField
+							label="Contraseña"
+							type="password"
+							name="password"
+							placeholder="gonzalo12313*"
+							data-test-id="password-input"
+							errors_data_test_id="password-errors"
+							errors={
+								errors()?.fieldErrors?.formErrors.fieldErrors.password &&
+								errors()?.fieldErrors?.formErrors.fieldErrors.password?.[0]
+							}
+						/>
 						<button
 							class="px-8 py-4 bg-emerald-400 font-bold text-light-50 rounded-lg max-w-2xl"
 							type="submit"

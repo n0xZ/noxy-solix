@@ -3,6 +3,7 @@ import { AuthError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
+import { FormField } from '~/components/FormField'
 import { supabase } from '~/lib/supabase'
 
 const loginSchema = zfd.formData({
@@ -47,36 +48,32 @@ export default function Login() {
 				{' '}
 				<form
 					onSubmit={onSubmit}
-					class="flex flex-col justify-center container mx-auto space-y-2 "
+					class="flex flex-col blur-sm p-20 justify-center container mx-auto space-y-2 "
 				>
-					<aside class="flex flex-col justify-center max-w-2xl">
-						<label html-for="email">Correo electrónico</label>
-						<input
-							type="email"
-							name="email"
-							placeholder="o.gonzalo1031@miemail.com"
-							data-test-id="email-input"
-						/>
-						<span class="h-6 text-red-500" data-test-id="email-errors">
-							<Show when={errors()?.fieldErrors?.formErrors.fieldErrors.email}>
-								{errors()?.fieldErrors?.formErrors.fieldErrors.email?.[0]}
-							</Show>
-						</span>
-					</aside>
-					<aside class="flex flex-col justify-center max-w-2xl">
-						<label html-for="password">Contraseña</label>
-						<input
-							type="password"
-							name="password"
-							placeholder="gonzalo123*"
-							data-test-id="password-input"
-						/>
-						<span class="h-6 text-red-500" data-test-id="password-errors">
-							<Show when={errors()?.fieldErrors?.formErrors.fieldErrors.password}>
-								{errors()?.fieldErrors?.formErrors.fieldErrors.password?.[0]}
-							</Show>
-						</span>
-					</aside>
+					<FormField
+						label="Correo electrónico"
+						type="email"
+						name="email"
+						placeholder="o.gonzalo1232131@miemail.com"
+						data-test-id="email-input"
+						errors_data_test_id="email-errors"
+						errors={
+							errors()?.fieldErrors?.formErrors.fieldErrors.email &&
+							errors()?.fieldErrors?.formErrors.fieldErrors.email?.[0]
+						}
+					/>
+					<FormField
+						label="Contraseña"
+						type="password"
+						name="password"
+						placeholder="gonzalo12313*"
+						data-test-id="password-input"
+						errors_data_test_id="password-errors"
+						errors={
+							errors()?.fieldErrors?.formErrors.fieldErrors.password &&
+							errors()?.fieldErrors?.formErrors.fieldErrors.password?.[0]
+						}
+					/>
 					<button
 						class="px-8 py-4 bg-emerald-400 font-bold text-light-50 rounded-lg max-w-2xl"
 						type="submit"
