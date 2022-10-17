@@ -11,9 +11,9 @@ export function FormField(props: Props) {
 		'label',
 	])
 	return (
-		<aside class="flex flex-col justify-center max-w-2xl">
+		<aside class="flex flex-col justify-center w-full xl:max-w-2xl lg:max-w-lg md:max-w-lg">
 			<label html-for="email">{selectedProps.label}</label>
-			<input {...rest} />
+			<input {...rest}  class="rounded-lg text-dark-900 py-3"/>
 			<span
 				data-test-id={selectedProps.errors_data_test_id}
 				class="h-6 text-red-500"
