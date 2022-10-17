@@ -7,6 +7,7 @@ specifiers:
   '@supabase/supabase-js': ^2.0.0
   '@tanstack/solid-query': ^4.11.0
   reatom-solid: ^2.0.0
+  solid-headless: ^0.13.0
   solid-icons: ^1.0.1
   solid-js: ^1.5.1
   solid-toast: ^0.3.5
@@ -26,6 +27,7 @@ dependencies:
   '@supabase/supabase-js': 2.0.0
   '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
   reatom-solid: 2.0.0_rxovobpakpaa6scmcbe7jqbkji
+  solid-headless: 0.13.0_solid-js@1.5.1
   solid-js: 1.5.1
   solid-toast: 0.3.5_solid-js@1.5.1
   zod: 3.19.1
@@ -3106,6 +3108,16 @@ packages:
       object-inspect: 1.12.2
     dev: true
 
+  /solid-headless/0.13.0_solid-js@1.5.1:
+    resolution: {integrity: sha512-N118iPl7W5lyug4K+4c0cwM8YR2yEVJ/3H4wq6tVijATHfXfLnB1ACFI5GGHSXlwu70PUzaGSKwcVqLlloUMyA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      solid-js: ^1.2
+    dependencies:
+      solid-js: 1.5.1
+      solid-use: 0.5.0_solid-js@1.5.1
+    dev: false
+
   /solid-icons/1.0.1_solid-js@1.5.1:
     resolution: {integrity: sha512-9rxPeJ1UDGzWGlksjuXuyK2CdL1vg89inDyOl43koL3zoMgXLzY6LVLuMeuhslHbjq7Fp2h6fSSImj9ygfvleA==}
     engines: {node: '>= 16'}
@@ -3135,6 +3147,15 @@ packages:
     resolution: {integrity: sha512-m4PX2ESex9nSwt9d9XTr3r+Kp3vjSoViDWj3gj6Xxgz21IKYODMKhACXurlZCztz56NQBnfX2m4es4I8JgXGQQ==}
     peerDependencies:
       solid-js: ^1.5.4
+    dependencies:
+      solid-js: 1.5.1
+    dev: false
+
+  /solid-use/0.5.0_solid-js@1.5.1:
+    resolution: {integrity: sha512-z1AaS99SL3gNP70K4+XIVKGXDRI56m3Q6Q4X63bfgw0kaN6cwT4SAyFZAmIRjHcvf5rOMRQfNgUV4YVDha+LcQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      solid-js: ^1.2
     dependencies:
       solid-js: 1.5.1
     dev: false
