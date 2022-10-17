@@ -1,6 +1,6 @@
 import { Link, useNavigate } from '@solidjs/router'
 import { AuthError } from '@supabase/supabase-js'
-import { createSignal, Show } from 'solid-js'
+import { createSignal } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 import { FormField } from '~/components/FormField'
@@ -44,11 +44,10 @@ export default function Login() {
 
 	return (
 		<section class="h-screen  ">
-			<article class="grid place-items-center w-full h-full">
-				{' '}
+			<article class="grid place-items-center  w-full h-full">
 				<form
 					onSubmit={onSubmit}
-					class="flex flex-col blur-sm p-20 justify-center container mx-auto space-y-2 "
+					class=" blur-sm p-20 flex flex-col items-center justify-center items-center w-full sm:w-2  xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-4 "
 				>
 					<FormField
 						label="Correo electrónico"
@@ -75,7 +74,7 @@ export default function Login() {
 						}
 					/>
 					<button
-						class="px-8 py-4 bg-emerald-400 font-bold text-light-50 rounded-lg max-w-2xl"
+						class="px-8 py-4 bg-emerald-400 font-bold w-full ¿ text-light-50 rounded-lg max-w-2xl"
 						type="submit"
 						data-test-id="submit-login"
 					>

@@ -7,7 +7,10 @@ import { FormField } from '~/components/FormField'
 import { supabase } from '~/lib/supabase'
 
 const loginSchema = zfd.formData({
-	email: z.string().email({ message: 'Formato de email ingresado no válido' }),
+	email: z
+		.string()
+		.min(5, { message: 'Campo requerido' })
+		.email({ message: 'Formato de email ingresado no válido' }),
 	password: z.string().min(5, { message: 'Campo requerido' }),
 })
 type FormEvent = Event & { submitter: HTMLElement } & {
@@ -42,14 +45,18 @@ export default function Register() {
 
 	return (
 		<section class="h-screen  ">
-			<article class="grid place-items-center w-full h-full">
+			<article class="grid place-items-center  w-full h-full">
 				<Show
-					when={needsEmailConfirm()}
-					fallback={<div>Por favor, revise su correo para verificar su cuenta.</div>}
+					when={!needsEmailConfirm()}
+					fallback={
+						<div data-test-id="register-result">
+							Por favor, revise su correo para verificar su cuenta.
+						</div>
+					}
 				>
 					<form
 						onSubmit={onSubmit}
-						class="flex flex-col justify-center container mx-auto space-y-2 "
+						class=" bg-opacity-60 backdrop-blur-lg backdrop-filter bg-dark-800  p-16  flex flex-col items-center justify-center items-center w-full  container mx-auto space-y-4 "
 					>
 						<FormField
 							label="Correo electrónico"
@@ -76,8 +83,9 @@ export default function Register() {
 							}
 						/>
 						<button
-							class="px-8 py-4 bg-emerald-400 font-bold text-light-50 rounded-lg max-w-2xl"
+							class="px-8 py-4 bg-dark-800 font-bold  border-dark-900 w-full min-w-xl max-w-2xl text-light-50 rounded-lg  hover:bg-emerald-600  duration-100 ease-in-out"
 							type="submit"
+							data-test-id="submit-register"
 						>
 							Crear cuenta
 						</button>
