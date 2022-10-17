@@ -2,11 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@playwright/test': ^1.27.1
-  '@reatom/core': ^2.0.22
   '@solidjs/router': ^0.5.0
   '@supabase/supabase-js': ^2.0.0
   '@tanstack/solid-query': ^4.11.0
-  reatom-solid: ^2.0.0
   solid-headless: ^0.13.0
   solid-icons: ^1.0.1
   solid-js: ^1.5.1
@@ -22,11 +20,9 @@ specifiers:
   zod-form-data: ^1.2.2
 
 dependencies:
-  '@reatom/core': 2.0.22
   '@solidjs/router': 0.5.0_solid-js@1.5.1
   '@supabase/supabase-js': 2.0.0
   '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
-  reatom-solid: 2.0.0_rxovobpakpaa6scmcbe7jqbkji
   solid-headless: 0.13.0_solid-js@1.5.1
   solid-js: 1.5.1
   solid-toast: 0.3.5_solid-js@1.5.1
@@ -1459,10 +1455,6 @@ packages:
       '@types/node': 18.8.4
       playwright-core: 1.27.1
     dev: true
-
-  /@reatom/core/2.0.22:
-    resolution: {integrity: sha512-t567/VDkFRb2cBDWiJpr5QSMIpgE082S21ITzNGQfVLBCuw7DEWYscVvqzfi2XHYAFO+02hsFCCFhtMU9w4Jog==}
-    dev: false
 
   /@rollup/plugin-babel/5.3.1_p5rdeczgubbtv4lfg2mcoxxnwm:
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
@@ -2960,16 +2952,6 @@ packages:
     dependencies:
       safe-buffer: 5.1.2
     dev: true
-
-  /reatom-solid/2.0.0_rxovobpakpaa6scmcbe7jqbkji:
-    resolution: {integrity: sha512-4PwOQITCZRXHAa5FL5CABEtHcbuUu6ahBT2EgnXL0aZlGaeTn3x5r8XFrejnyJs8tMGWdd+h+sS0k+EpDzLdrA==}
-    peerDependencies:
-      '@reatom/core': ^2.0.0
-      solid-js: ^1.0.0
-    dependencies:
-      '@reatom/core': 2.0.22
-      solid-js: 1.5.1
-    dev: false
 
   /regenerate-unicode-properties/10.1.0:
     resolution: {integrity: sha512-d1VudCLoIGitcU/hEg2QqvyGZQmdC0Lf8BqdOMXGFSvJP4bNV1+XqbPQeHHLD51Jh4QJJ225dlIFvY4Ly6MXmQ==}
