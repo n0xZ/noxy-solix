@@ -1,5 +1,5 @@
-import { Link, useNavigate } from '@solidjs/router'
-import { AuthError } from '@supabase/supabase-js'
+import { Link } from '@solidjs/router'
+import { ApiError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
@@ -19,7 +19,7 @@ type FormEvent = Event & { submitter: HTMLElement } & {
 }
 type LoginFields = z.infer<typeof loginSchema>
 type Errors = {
-	authErrors: AuthError | null
+	authErrors: ApiError | null
 	fieldErrors: z.ZodError<LoginFields> | null
 }
 
@@ -34,7 +34,7 @@ export default function Register() {
 		if (!result.success)
 			setErrors((prev) => ({ ...prev, fieldErrors: result.error }))
 		else {
-			const { data, error } = await supabase.auth.signUp({
+			const { error } = await supabase.auth.signUp({
 				email: result.data.email,
 				password: result.data.password,
 			})
