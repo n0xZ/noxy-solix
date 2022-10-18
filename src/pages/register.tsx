@@ -26,20 +26,27 @@ type Errors = {
 export default function Register() {
 	const [errors, setErrors] = createSignal<Errors>({} as Errors)
 	const [needsEmailConfirm, setNeedsEmailConfirm] = createSignal(false)
-
+	const [isSubmitting, setIsSubmitting] = createSignal(false)
 	const onSubmit = async (e: FormEvent) => {
 		const result = loginSchema.safeParse(new FormData(e.currentTarget))
+		setIsSubmitting(true)
 		e.preventDefault()
 
-		if (!result.success)
+		if (!result.success) {
 			setErrors((prev) => ({ ...prev, fieldErrors: result.error }))
-		else {
-			const { error } = await supabase.auth.signUp({
+			setIsSubmitting(false)
+		} else {
+			const { user, error } = await supabase.auth.signUp({
 				email: result.data.email,
 				password: result.data.password,
 			})
-			if (error) setErrors((prev) => ({ ...prev, authErrors: error }))
-			else setNeedsEmailConfirm(true)
+			if (error) {
+				setIsSubmitting(false)
+				setErrors((prev) => ({ ...prev, authErrors: error }))
+			} else if (user) {
+				setIsSubmitting(false)
+				setNeedsEmailConfirm(true)
+			}
 		}
 	}
 
@@ -56,7 +63,7 @@ export default function Register() {
 				>
 					<form
 						onSubmit={onSubmit}
-						class=" bg-opacity-60 backdrop-blur-lg backdrop-filter bg-dark-800  p-16  flex flex-col items-center justify-center items-center w-full  container mx-auto space-y-4 "
+						class=" bg-opacity-20    p-16  flex flex-col items-center justify-center items-center w-full  container mx-auto space-y-4 "
 					>
 						<FormField
 							label="Correo electrónico"
@@ -65,6 +72,7 @@ export default function Register() {
 							placeholder="o.gonzalo1232131@miemail.com"
 							data-test-id="email-input"
 							errors_data_test_id="email-errors"
+							disabled={isSubmitting()}
 							errors={
 								errors()?.fieldErrors?.formErrors.fieldErrors.email &&
 								errors()?.fieldErrors?.formErrors.fieldErrors.email?.[0]
@@ -77,17 +85,21 @@ export default function Register() {
 							placeholder="gonzalo12313*"
 							data-test-id="password-input"
 							errors_data_test_id="password-errors"
+							disabled={isSubmitting()}
 							errors={
 								errors()?.fieldErrors?.formErrors.fieldErrors.password &&
 								errors()?.fieldErrors?.formErrors.fieldErrors.password?.[0]
 							}
 						/>
 						<button
-							class="px-8 py-4 bg-dark-800 font-bold  border-dark-900 w-full min-w-xl max-w-2xl text-light-50 rounded-lg  hover:bg-emerald-600  duration-100 ease-in-out"
+							class={`px-8 py-4 ${
+								isSubmitting() ? 'bg-emerald-600' : 'bg-emerald-400'
+							} font-bold w-full  text-light-900 rounded-lg max-w-2xl`}
 							type="submit"
 							data-test-id="submit-register"
+							disabled={isSubmitting()}
 						>
-							Crear cuenta
+							{isSubmitting() ? 'Creando cuenta...' : 'Crear cuenta'}
 						</button>
 
 						<span class="h-6 text-red-500">
