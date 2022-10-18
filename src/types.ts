@@ -1,8 +1,8 @@
-export type Invoice = {
-	invoiceId: string
+export type ProductList = {
+	productListId: string
 	month: string
 	created_at: Date
-	user_id: string
+	user_Id: string
 }
 
 export type Item = {
