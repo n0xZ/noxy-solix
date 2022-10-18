@@ -1,6 +1,6 @@
 import { Link, useNavigate } from '@solidjs/router'
 import { ApiError } from '@supabase/supabase-js'
-import { createSignal } from 'solid-js'
+import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 import { FormField } from '~/components/FormField'
@@ -82,7 +82,7 @@ export default function Login() {
 					</button>
 
 					<span class="h-6 text-red-500" data-test-id="auth-errors">
-						{errors().authErrors && errors().authErrors?.message}
+						<Show when={errors().authErrors}>{errors().authErrors?.message}</Show>
 					</span>
 
 					<Link href="/register" class="text-center">
