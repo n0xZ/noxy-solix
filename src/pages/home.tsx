@@ -1,42 +1,54 @@
 import { NavLink, Outlet, useNavigate } from '@solidjs/router'
-import { AuthSession } from '@supabase/supabase-js'
 import { createEffect, createSignal } from 'solid-js'
+import { AiFillHome } from 'solid-icons/ai'
+
 import { supabase } from '~/lib/supabase'
 
 export default function HomeOutlet() {
-	const [session, setSession] = createSignal<AuthSession | null>()
 	const navigate = useNavigate()
 	createEffect(() => {
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session)
-		})
-		supabase.auth.onAuthStateChange((_event, session) => {
+		supabase.auth.onAuthStateChange((_event, _) => {
 			if (_event === 'SIGNED_OUT') {
 				navigate('/login')
 			}
-
-			setSession(session)
 		})
 	})
+
 	const handleSignOut = () => {
 		supabase.auth.signOut()
 	}
 	return (
 		<>
-			<header class="p-5 border-dark-50 border-b-2">
+			<header class="p-5 border-dark-800 border-b-2">
 				<nav class="flex flex-row items-center justify-between container mx-auto max-w-5xl font-mulish">
-					<h1>{session()?.user.email}</h1>
-					<ul class="flex flex-row items-center">
+					<h1>
+						<NavLink
+							href="/home"
+							class="flex flex-row items-center space-x-4"
+							activeClass="text-emerald-300"
+						>
+							<AiFillHome height={300} width={300} />
+							<span>Home</span>
+						</NavLink>
+					</h1>
+					<ul class="xl:flex lg:flex hidden flex-row items-center space-x-5">
 						<li>
-							<NavLink href="/home/">Agenda de compra</NavLink>
+							<NavLink href="/home/list" activeClass="text-emerald-300">
+								Agenda de compra
+							</NavLink>
 						</li>
 						<li>
-							<button onClick={() => handleSignOut()}>Cerrar sesión</button>
+							<button
+								onClick={() => handleSignOut()}
+								class="px-5 py-3 rounded-lg border-2 border-emerald-300 hover:bg-emerald-600 hover:border-dark-600 duration-100 ease-out"
+							>
+								Cerrar sesión
+							</button>
 						</li>
 					</ul>
 				</nav>
 			</header>
-			<main>
+			<main class="h-screen">
 				<Outlet />
 			</main>
 		</>
