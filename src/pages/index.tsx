@@ -9,6 +9,7 @@ import {
 	MenuItem,
 } from 'solid-headless'
 import { AiOutlineBars } from 'solid-icons/ai'
+import { Title } from '@solidjs/meta'
 type LandingLayoutProps = {
 	children: JSXElement
 }
@@ -111,6 +112,7 @@ export function LandingLayout(props: LandingLayoutProps) {
 export default function Home() {
 	return (
 		<LandingLayout>
+		<Title>Bienvenid@ a Solyx!</Title>
 			<section class="h-full flex flex-col items-center justify-center container mx-auto space-y-3 text-center">
 				<h1 class="xl:text-3xl lg:text-2xl text-2xl font-bold">
 					Preparar tu lista de compras nunca fue tan fácil con Solyx
