@@ -1,6 +1,6 @@
 export type ProductList = {
 	productListId: string
-	month: string
+	title: string
 	created_at: Date
 	user_Id: string
 }
