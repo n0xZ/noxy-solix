@@ -3,10 +3,11 @@ import { ApiError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
-import { FormField } from '~/components/FormField'
+import { FormField } from '~/components/form/FormField'
 import { supabase } from '~/lib/supabase'
 
 const loginSchema = zfd.formData({
+	username: z.string().min(5, { message: 'Campo requerido' }),
 	email: z
 		.string()
 		.min(5, { message: 'Campo requerido' })
@@ -36,10 +37,17 @@ export default function Register() {
 			setErrors((prev) => ({ ...prev, fieldErrors: result.error }))
 			setIsSubmitting(false)
 		} else {
-			const { user, error } = await supabase.auth.signUp({
-				email: result.data.email,
-				password: result.data.password,
-			})
+			const { user, error } = await supabase.auth.signUp(
+				{
+					email: result.data.email,
+					password: result.data.password,
+				},
+				{
+					data: {
+						username: result.data.username,
+					},
+				}
+			)
 			if (error) {
 				setIsSubmitting(false)
 				setErrors((prev) => ({ ...prev, authErrors: error }))
@@ -63,8 +71,22 @@ export default function Register() {
 				>
 					<form
 						onSubmit={onSubmit}
-						class=" bg-opacity-20    p-16  flex flex-col items-center justify-center items-center w-full  container mx-auto space-y-4 "
+						class=" p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5 h-full"
 					>
+					<h2 class='text-center xl:text-3xl text-lg font-bold mb-3'>Unete ya a Solyx!</h2>
+						<FormField
+							label="Nombre de usuario"
+							type="text"
+							name="username"
+							placeholder="gonzalo123121"
+							data-test-id="username-input"
+							errors_data_test_id="username-errors"
+							disabled={isSubmitting()}
+							errors={
+								errors()?.fieldErrors?.formErrors.fieldErrors.username &&
+								errors()?.fieldErrors?.formErrors.fieldErrors.username?.[0]
+							}
+						/>
 						<FormField
 							label="Correo electrónico"
 							type="email"
