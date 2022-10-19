@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@playwright/test': ^1.27.1
+  '@solidjs/meta': ^0.28.0
   '@solidjs/router': ^0.5.0
   '@supabase/supabase-js': '1.9'
   '@tanstack/solid-query': ^4.11.0
@@ -20,6 +21,7 @@ specifiers:
   zod-form-data: ^1.2.2
 
 dependencies:
+  '@solidjs/meta': 0.28.0_solid-js@1.5.1
   '@solidjs/router': 0.5.0_solid-js@1.5.1
   '@supabase/supabase-js': 1.9.0
   '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
@@ -1509,6 +1511,14 @@ packages:
       picomatch: 2.3.1
       rollup: 2.79.1
     dev: true
+
+  /@solidjs/meta/0.28.0_solid-js@1.5.1:
+    resolution: {integrity: sha512-x52VdB9RZJ1apDB/pAmf58oeJsJ0lGKFXWjnm/TE/MlENIBPg3JaW8H5v2HnGpQC0WUbgiIsDFWpLWVNBo5t6g==}
+    peerDependencies:
+      solid-js: '>=1.4.0'
+    dependencies:
+      solid-js: 1.5.1
+    dev: false
 
   /@solidjs/router/0.5.0_solid-js@1.5.1:
     resolution: {integrity: sha512-rNR07l21tWWDVmCbaapggB89rEX7jlM2XChpTLqEGEnj46LzVZ8zgvjcF6NNKScByAlLpoQUkVIjB2KHpcMi+w==}

@@ -1,7 +1,7 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
 import { QueryClient, QueryClientProvider } from '@tanstack/solid-query'
-
+import { MetaProvider } from '@solidjs/meta'
 import { Router } from '@solidjs/router'
 import 'virtual:windi.css'
 import './reset.css'
@@ -11,7 +11,9 @@ render(
 	() => (
 		<Router>
 			<QueryClientProvider client={queryClient}>
-				<App />
+				<MetaProvider>
+					<App />
+				</MetaProvider>
 			</QueryClientProvider>
 		</Router>
 	),
