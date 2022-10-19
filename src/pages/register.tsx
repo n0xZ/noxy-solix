@@ -1,3 +1,4 @@
+import { Title } from '@solidjs/meta'
 import { Link } from '@solidjs/router'
 import { ApiError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
@@ -60,6 +61,7 @@ export default function Register() {
 
 	return (
 		<section class="h-screen  ">
+			<Title>Solyx - Unete ya!</Title>
 			<article class="grid place-items-center  w-full h-full">
 				<Show
 					when={!needsEmailConfirm()}
@@ -73,7 +75,9 @@ export default function Register() {
 						onSubmit={onSubmit}
 						class=" p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5 h-full"
 					>
-					<h2 class='text-center xl:text-3xl text-lg font-bold mb-3'>Unete ya a Solyx!</h2>
+						<h2 class="text-center xl:text-3xl text-lg font-bold mb-3">
+							Unete ya a Solyx!
+						</h2>
 						<FormField
 							label="Nombre de usuario"
 							type="text"

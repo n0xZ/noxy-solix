@@ -1,3 +1,4 @@
+import { Title } from '@solidjs/meta'
 import { Link, useNavigate } from '@solidjs/router'
 import { ApiError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
@@ -52,12 +53,15 @@ export default function Login() {
 
 	return (
 		<section class="h-screen  ">
+			<Title>Solyx - Iniciar sesión</Title>
 			<article class="grid place-items-center  w-full h-full">
 				<form
 					onSubmit={onSubmit}
 					class="  p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5  "
 				>
-				<h2 class='text-center xl:text-3xl text-lg font-bold mb-3'>Inicia sesión en Solyx!</h2>
+					<h2 class="text-center xl:text-3xl text-lg font-bold mb-3">
+						Inicia sesión en Solyx!
+					</h2>
 					<FormField
 						autocomplete="off"
 						label="Correo electrónico"

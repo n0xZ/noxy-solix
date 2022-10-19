@@ -127,7 +127,7 @@ export default function HomeOutlet() {
 						</li>
 						<li>
 							<button
-								onClick={() => handleSignOut()}
+								onClick={handleSignOut}
 								class="px-6 py-3 rounded-lg  flex flex-row items-center space-x-3  hover:bg-dark-700 duration-100 ease-out"
 							>
 								<AiOutlineLogout />
