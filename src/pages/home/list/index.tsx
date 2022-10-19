@@ -1,6 +1,8 @@
-import { Link } from '@solidjs/router'
+import { Title } from '@solidjs/meta'
+
 import { createQuery } from '@tanstack/solid-query'
-import { Match, Switch } from 'solid-js'
+import { createSignal, Match, Switch } from 'solid-js'
+import { CreateProductList } from '~/components/product/CreateProductList'
 import ProductsList from '~/components/product/ProductsList'
 import { getProductsListFromDB } from '~/lib/supabase'
 
@@ -9,9 +11,21 @@ export default function ViewProductLists() {
 		() => ['ProductListsByUserId'],
 		async () => await getProductsListFromDB()
 	)
+	const [isOpen, setIsOpen] = createSignal(false)
+	function closeModal() {
+		setIsOpen(false)
+	}
 
+	function openModal() {
+		setIsOpen(true)
+	}
 	return (
 		<section class="h-full  space-y-5 ">
+			<Title>Solyx - Lista de productos</Title>
+			<aside class="w-full p-5 border-b-2 border-dark-800  container mx-auto flex flex-row items-center justify-end">
+				<button onClick={openModal}>Crear nueva lista</button>
+			</aside>
+			<CreateProductList isOpen={isOpen()} closeModal={closeModal} />
 			<section class="flex h-full xl:flex-row  flex-col items-center justify-center text-center">
 				<Switch>
 					<Match when={query.isLoading}>
