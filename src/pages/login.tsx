@@ -3,7 +3,7 @@ import { ApiError } from '@supabase/supabase-js'
 import { createSignal, Show } from 'solid-js'
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
-import { FormField } from '~/components/FormField'
+import { FormField } from '~/components/form/FormField'
 import { supabase } from '~/lib/supabase'
 
 const loginSchema = zfd.formData({
@@ -55,7 +55,7 @@ export default function Login() {
 			<article class="grid place-items-center  w-full h-full">
 				<form
 					onSubmit={onSubmit}
-					class="  p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5 "
+					class="  p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5  "
 				>
 				<h2 class='text-center xl:text-3xl text-lg font-bold mb-3'>Inicia sesión en Solyx!</h2>
 					<FormField
