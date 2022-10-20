@@ -1,5 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
-import { ProductList } from '~/types'
+import { ProductList, Item } from '~/types'
+
+type CreateProductList = {
+	title: string
+	user_Id?: string
+}
 
 export const supabase = createClient(
 	import.meta.env.VITE_SUPABASE_URL!,
@@ -19,4 +24,15 @@ export const getProductItemsByProductListId = async (productListId: string) => {
 		.from<ProductList>('product-list')
 		.select('*')
 		.eq('productListId', productListId)
+}
+
+export const createProductList = async ({
+	title,
+	user_Id,
+}: CreateProductList) => {
+	return await supabase.from('product-list').insert({ title, user_Id })
+}
+
+export const createItemsOnProductList = async (items: Item[]) => {
+	return await supabase.from('item').insert(items)
 }
