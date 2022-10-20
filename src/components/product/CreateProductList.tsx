@@ -6,11 +6,50 @@ import {
 	TransitionChild,
 	DialogOverlay,
 } from 'solid-headless'
+import { zfd } from 'zod-form-data'
+import { z } from 'zod'
+import { FormField } from '../form/FormField'
+import { createSignal } from 'solid-js'
+import { createMutation } from '@tanstack/solid-query'
+import { toast } from 'solid-toast'
+import { createProductList } from '~/lib/supabase'
+import { User } from '@supabase/supabase-js'
+
+const createProductValidator = zfd.formData({
+	title: z.string().min(3, { message: 'Campo requerido' }),
+})
+
+type FormEvent = Event & { submitter: HTMLElement } & {
+	currentTarget: HTMLFormElement
+	target: Element
+}
+
 type Props = {
 	isOpen: boolean
 	closeModal: () => void
+	loggedUser: User | null | undefined
 }
+
 export function CreateProductList(props: Props) {
+	const [formErrors, setFormErrors] = createSignal<z.ZodError<
+		z.infer<typeof createProductValidator>
+	> | null>(null)
+	const { isLoading, isSuccess, mutate } = createMutation(createProductList, {
+		onSuccess() {
+			toast.success('Lista de productos creada con éxito!')
+		},
+	})
+	const onSubmit = (e: FormEvent) => {
+		const result = createProductValidator.safeParse(new FormData(e.currentTarget))
+		e.preventDefault()
+		if (!result.success) setFormErrors(result.error)
+		else {
+			mutate({ title: result.data.title, user_Id: props.loggedUser?.id })
+			props.closeModal()
+		}
+	}
+	if (isSuccess) toast.success('Lista de productos creada con éxito!')
+
 	return (
 		<Transition appear show={props.isOpen}>
 			<Dialog
@@ -46,19 +85,39 @@ export function CreateProductList(props: Props) {
 							<DialogTitle as="h3" class="text-lg font-medium leading-6 ">
 								Crear nueva lista de productos
 							</DialogTitle>
-							<form >
-              
-              </form>
+							<form
+								class="flex flex-col justify-center items-center "
+								onSubmit={onSubmit}
+							>
+								<FormField
+									label="Titulo de la lista de compras"
+									placeholder="Mi nuevo titulo de la lista de compras"
+									name="title"
+									type="text"
+									disabled={isLoading}
+									errors={
+										formErrors()?.formErrors.fieldErrors.title &&
+										formErrors()?.formErrors.fieldErrors.title?.[0]
+									}
+								/>
 
-							<div class="mt-4">
-								<button
-									type="button"
-									class="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-									onClick={props.closeModal}
-								>
-									Got it, thanks!
-								</button>
-							</div>
+								<div class="mt-4 flex flex-row items-center space-x-4 w-full">
+									<button
+										type="submit"
+										class="font-bold w-full  text-light-500 rounded-lg max-w-2xl bg-emerald-500 px-2 py-3 text-base"
+										disabled={isLoading}
+									>
+										{isLoading ? 'Creando lista...' : 'Crear nueva lista de productos'}
+									</button>
+									<button
+										type="button"
+										class="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+										onClick={props.closeModal}
+									>
+										Cerrar formulario
+									</button>
+								</div>
+							</form>
 						</DialogPanel>
 					</TransitionChild>
 				</div>
