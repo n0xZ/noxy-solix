@@ -3,6 +3,7 @@ import { render } from 'solid-js/web'
 import { QueryClient, QueryClientProvider } from '@tanstack/solid-query'
 import { MetaProvider } from '@solidjs/meta'
 import { Router } from '@solidjs/router'
+import { Toaster } from 'solid-toast'
 import 'virtual:windi.css'
 import './reset.css'
 import App from './App'
@@ -13,6 +14,7 @@ render(
 			<QueryClientProvider client={queryClient}>
 				<MetaProvider>
 					<App />
+					<Toaster position="top-right" />
 				</MetaProvider>
 			</QueryClientProvider>
 		</Router>
