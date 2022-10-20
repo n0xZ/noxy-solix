@@ -1,16 +1,21 @@
 import { Title } from '@solidjs/meta'
+import { AuthSession } from '@supabase/supabase-js'
 
 import { createQuery } from '@tanstack/solid-query'
-import { createSignal, Match, Switch } from 'solid-js'
+import { createSignal, Match, onMount, Switch } from 'solid-js'
 import { CreateProductList } from '~/components/product/CreateProductList'
 import ProductsList from '~/components/product/ProductsList'
-import { getProductsListFromDB } from '~/lib/supabase'
+import { getProductsListFromDB, supabase } from '~/lib/supabase'
 
 export default function ViewProductLists() {
 	const query = createQuery(
 		() => ['ProductListsByUserId'],
 		async () => await getProductsListFromDB()
 	)
+	const [existingSession, setExistingSession] = createSignal<AuthSession | null>(
+		null
+	)
+	onMount(() => setExistingSession(supabase.auth.session()))
 	const [isOpen, setIsOpen] = createSignal(false)
 	function closeModal() {
 		setIsOpen(false)
@@ -25,7 +30,11 @@ export default function ViewProductLists() {
 			<aside class="w-full p-5 border-b-2 border-dark-800  container mx-auto flex flex-row items-center justify-end">
 				<button onClick={openModal}>Crear nueva lista</button>
 			</aside>
-			<CreateProductList isOpen={isOpen()} closeModal={closeModal} />
+			<CreateProductList
+				loggedUser={existingSession()?.user}
+				isOpen={isOpen()}
+				closeModal={closeModal}
+			/>
 			<section class="flex h-full xl:flex-row  flex-col items-center justify-center text-center">
 				<Switch>
 					<Match when={query.isLoading}>
