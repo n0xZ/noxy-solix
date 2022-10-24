@@ -21,7 +21,7 @@ export const getProductsListFromDB = async () => {
 }
 export const getProductItemsByProductListId = async (productListId: string) => {
 	return await supabase
-		.from<ProductList>('product-list')
+		.from<Item>('item')
 		.select('*')
 		.eq('productListId', productListId)
 }
@@ -33,6 +33,6 @@ export const createProductList = async ({
 	return await supabase.from('product-list').insert({ title, user_Id })
 }
 
-export const createItemsOnProductList = async (items: Item[]) => {
+export const createItemsOnProductList = async (items: Item) => {
 	return await supabase.from('item').insert(items)
 }
