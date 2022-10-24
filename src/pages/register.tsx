@@ -6,6 +6,7 @@ import { z } from 'zod'
 import { zfd } from 'zod-form-data'
 import { FormField } from '~/components/form/FormField'
 import { supabase } from '~/lib/supabase'
+import { FormEvent } from '~/types'
 
 const loginSchema = zfd.formData({
 	username: z.string().min(5, { message: 'Campo requerido' }),
@@ -15,10 +16,7 @@ const loginSchema = zfd.formData({
 		.email({ message: 'Formato de email ingresado no válido' }),
 	password: z.string().min(5, { message: 'Campo requerido' }),
 })
-type FormEvent = Event & { submitter: HTMLElement } & {
-	currentTarget: HTMLFormElement
-	target: Element
-}
+
 type LoginFields = z.infer<typeof loginSchema>
 type Errors = {
 	authErrors: ApiError | null

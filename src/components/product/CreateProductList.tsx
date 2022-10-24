@@ -14,15 +14,12 @@ import { createMutation } from '@tanstack/solid-query'
 import { toast } from 'solid-toast'
 import { createProductList } from '~/lib/supabase'
 import { User } from '@supabase/supabase-js'
+import { FormEvent } from '~/types'
 
 const createProductValidator = zfd.formData({
 	title: z.string().min(3, { message: 'Campo requerido' }),
 })
 
-type FormEvent = Event & { submitter: HTMLElement } & {
-	currentTarget: HTMLFormElement
-	target: Element
-}
 
 type Props = {
 	isOpen: boolean
@@ -34,9 +31,11 @@ export function CreateProductList(props: Props) {
 	const [formErrors, setFormErrors] = createSignal<z.ZodError<
 		z.infer<typeof createProductValidator>
 	> | null>(null)
-	const { isLoading, isSuccess, mutate } = createMutation(createProductList, {
-		onSuccess() {
+	const { isLoading, mutate } = createMutation(createProductList, {
+		onSuccess(data) {
 			toast.success('Lista de productos creada con éxito!')
+			props.closeModal()
+			return data
 		},
 	})
 	const onSubmit = (e: FormEvent) => {
@@ -45,10 +44,8 @@ export function CreateProductList(props: Props) {
 		if (!result.success) setFormErrors(result.error)
 		else {
 			mutate({ title: result.data.title, user_Id: props.loggedUser?.id })
-			props.closeModal()
 		}
 	}
-	if (isSuccess) toast.success('Lista de productos creada con éxito!')
 
 	return (
 		<Transition appear show={props.isOpen}>
@@ -69,10 +66,7 @@ export function CreateProductList(props: Props) {
 						<DialogOverlay class="fixed inset-0 bg-dark-800 bg-opacity-50" />
 					</TransitionChild>
 
-					{/* This element is to trick the browser into centering the modal contents. */}
-					<span class="inline-block h-screen align-middle" aria-hidden="true">
-						&#8203;
-					</span>
+					<span class="inline-block h-screen align-middle" aria-hidden="true"></span>
 					<TransitionChild
 						enter="ease-out duration-300"
 						enterFrom="opacity-0 scale-95"
@@ -81,8 +75,8 @@ export function CreateProductList(props: Props) {
 						leaveFrom="opacity-100 scale-100"
 						leaveTo="opacity-0 scale-95"
 					>
-						<DialogPanel class="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-dark-300 text-light-50 shadow-xl rounded-2xl h-96">
-							<DialogTitle as="h3" class="text-lg font-medium leading-6 ">
+						<DialogPanel class="inline-block flex flex-col justify-between items-center w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-dark-300 text-light-50 shadow-xl rounded-2xl h-full">
+							<DialogTitle as="h3" class="text-lg font-medium leading-6 mb-12">
 								Crear nueva lista de productos
 							</DialogTitle>
 							<form
@@ -107,11 +101,11 @@ export function CreateProductList(props: Props) {
 										class="font-bold w-full  text-light-500 rounded-lg max-w-2xl bg-emerald-500 px-2 py-3 text-base"
 										disabled={isLoading}
 									>
-										{isLoading ? 'Creando lista...' : 'Crear nueva lista de productos'}
+										{isLoading ? 'Creando lista...' : 'Crear lista'}
 									</button>
 									<button
 										type="button"
-										class="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+										class="inline-flex justify-center px-4 py-2 text-sm font-medium  bg-dark-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
 										onClick={props.closeModal}
 									>
 										Cerrar formulario

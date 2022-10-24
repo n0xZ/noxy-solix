@@ -6,9 +6,14 @@ export type ProductList = {
 }
 
 export type Item = {
-	itemId: string
+	itemId?: string
 	created_at: Date
 	name: string
-	amount: string
-	price: string
+	amount: number
+	price: number
+	productListId: string
+}
+export type FormEvent = Event & { submitter: HTMLElement } & {
+	currentTarget: HTMLFormElement
+	target: Element
 }
