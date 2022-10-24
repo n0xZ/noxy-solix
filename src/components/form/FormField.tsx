@@ -15,7 +15,7 @@ export function FormField(props: Props) {
 			<label html-for="email">{selectedProps.label}</label>
 			<input
 				{...rest}
-				class="rounded-lg text-light-900 bg-transparent outline-none border-dark-400  focus:ring focus:border-dark-400 focus:ring-dark-400 duration-100 ease-in-out py-3"
+				class="rounded-lg text-light-900 px-3 bg-transparent outline-none border-dark-400  focus:ring focus:border-dark-400 focus:ring-dark-400 duration-100 ease-in-out py-3"
 			/>
 			<span
 				data-test-id={selectedProps.errors_data_test_id}

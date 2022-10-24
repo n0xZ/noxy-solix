@@ -15,7 +15,7 @@ import { AuthSession } from '@supabase/supabase-js'
 function Separator() {
 	return (
 		<div class="flex items-center" aria-hidden="true">
-			<div class="w-full border-t border-gray-200" />
+			<div class="w-full border-t border-dark-200" />
 		</div>
 	)
 }
