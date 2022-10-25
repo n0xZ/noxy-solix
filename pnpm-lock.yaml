@@ -6,6 +6,7 @@ specifiers:
   '@solidjs/router': ^0.5.0
   '@supabase/supabase-js': '1.9'
   '@tanstack/solid-query': ^4.11.0
+  idb-keyval: ^6.2.0
   solid-headless: ^0.13.0
   solid-icons: ^1.0.1
   solid-js: ^1.5.1
@@ -17,6 +18,8 @@ specifiers:
   vite-plugin-solid: ^2.3.9
   vite-plugin-windicss: ^1.8.8
   windicss: ^3.5.6
+  workbox-core: ^6.5.4
+  workbox-precaching: ^6.5.4
   zod: ^3.19.1
   zod-form-data: ^1.2.2
 
@@ -25,9 +28,12 @@ dependencies:
   '@solidjs/router': 0.5.0_solid-js@1.5.1
   '@supabase/supabase-js': 1.9.0
   '@tanstack/solid-query': 4.11.0_solid-js@1.5.1
+  idb-keyval: 6.2.0
   solid-headless: 0.13.0_solid-js@1.5.1
   solid-js: 1.5.1
   solid-toast: 0.3.5_solid-js@1.5.1
+  workbox-core: 6.5.4
+  workbox-precaching: 6.5.4
   zod: 3.19.1
   zod-form-data: 1.2.2_zod@3.19.1
 
@@ -2477,6 +2483,12 @@ packages:
     resolution: {integrity: sha512-c3Ab/url5ksaT0WyleslpBEthOzWhrjQbg75y7XUsfSzi3Dgzt0l8w5e7DylRn15MTlMMD58dTfzddNS2kcAjQ==}
     dev: true
 
+  /idb-keyval/6.2.0:
+    resolution: {integrity: sha512-uw+MIyQn2jl3+hroD7hF8J7PUviBU7BPKWw4f/ISf32D4LoGu98yHjrzWWJDASu9QNrX10tCJqk9YY0ClWm8Ng==}
+    dependencies:
+      safari-14-idb-fix: 3.0.0
+    dev: false
+
   /idb/7.1.0:
     resolution: {integrity: sha512-Wsk07aAxDsntgYJY4h0knZJuTxM73eQ4reRAO+Z1liOh8eMCJ/MoDS8fCui1vGT9mnjtl1sOu3I2i/W1swPYZg==}
     dev: true
@@ -3051,6 +3063,10 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /safari-14-idb-fix/3.0.0:
+    resolution: {integrity: sha512-eBNFLob4PMq8JA1dGyFn6G97q3/WzNtFK4RnzT1fnLq+9RyrGknzYiM/9B12MnKAxuj1IXr7UKYtTNtjyKMBog==}
+    dev: false
+
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
     dev: true
@@ -3614,7 +3630,6 @@ packages:
 
   /workbox-core/6.5.4:
     resolution: {integrity: sha512-OXYb+m9wZm8GrORlV2vBbE5EC1FKu71GGp0H4rjmxmF4/HLbMCoTFws87M3dFwgpmg0v00K++PImpNQ6J5NQ6Q==}
-    dev: true
 
   /workbox-expiration/6.5.4:
     resolution: {integrity: sha512-jUP5qPOpH1nXtjGGh1fRBa1wJL2QlIb5mGpct3NzepjGG2uFFBn4iiEBiI9GUmfAFR2ApuRhDydjcRmYXddiEQ==}
@@ -3644,7 +3659,6 @@ packages:
       workbox-core: 6.5.4
       workbox-routing: 6.5.4
       workbox-strategies: 6.5.4
-    dev: true
 
   /workbox-range-requests/6.5.4:
     resolution: {integrity: sha512-Je2qR1NXCFC8xVJ/Lux6saH6IrQGhMpDrPXWZWWS8n/RD+WZfKa6dSZwU+/QksfEadJEr/NfY+aP/CXFFK5JFg==}
@@ -3667,13 +3681,11 @@ packages:
     resolution: {integrity: sha512-apQswLsbrrOsBUWtr9Lf80F+P1sHnQdYodRo32SjiByYi36IDyL2r7BH1lJtFX8fwNHDa1QOVY74WKLLS6o5Pg==}
     dependencies:
       workbox-core: 6.5.4
-    dev: true
 
   /workbox-strategies/6.5.4:
     resolution: {integrity: sha512-DEtsxhx0LIYWkJBTQolRxG4EI0setTJkqR4m7r4YpBdxtWJH1Mbg01Cj8ZjNOO8etqfA3IZaOPHUxCs8cBsKLw==}
     dependencies:
       workbox-core: 6.5.4
-    dev: true
 
   /workbox-streams/6.5.4:
     resolution: {integrity: sha512-FXKVh87d2RFXkliAIheBojBELIPnWbQdyDvsH3t74Cwhg0fDheL1T8BqSM86hZvC0ZESLsznSYWw+Va+KVbUzg==}

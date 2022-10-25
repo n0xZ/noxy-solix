@@ -26,9 +26,12 @@
 		"@solidjs/router": "^0.5.0",
 		"@supabase/supabase-js": "1.9",
 		"@tanstack/solid-query": "^4.11.0",
+		"idb-keyval": "^6.2.0",
 		"solid-headless": "^0.13.0",
 		"solid-js": "^1.5.1",
 		"solid-toast": "^0.3.5",
+		"workbox-core": "^6.5.4",
+		"workbox-precaching": "^6.5.4",
 		"zod": "^3.19.1",
 		"zod-form-data": "^1.2.2"
 	}

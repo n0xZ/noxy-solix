@@ -12,8 +12,9 @@ export default defineConfig({
 		WindiCSS(),
 		Pages(),
 		VitePWA({
+			injectRegister: 'auto',
 			registerType: 'autoUpdate',
-			includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+			includeAssets: ['favicon.ico'],
 			manifest: {
 				name: 'Solyx - App',
 				short_name: 'solyx',
@@ -39,6 +40,7 @@ export default defineConfig({
 					},
 				],
 			},
+			devOptions: { enabled: true },
 		}),
 	],
 	server: {
