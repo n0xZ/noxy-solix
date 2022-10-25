@@ -19,18 +19,25 @@ export const getProductsListFromDB = async () => {
 		.select('*')
 		.eq('user_Id', loggedUser?.user?.id)
 }
-export const getProductItemsByProductListId = async (productListId: string) => {
+
+export const getProductListsById = async (productListId: string) => {
 	return await supabase
-		.from<Item>('item')
+		.from<ProductList>('product-list')
 		.select('*')
 		.eq('productListId', productListId)
 }
-
 export const createProductList = async ({
 	title,
 	user_Id,
 }: CreateProductList) => {
 	return await supabase.from('product-list').insert({ title, user_Id })
+}
+
+export const getProductItemsByProductListId = async (productListId: string) => {
+	return await supabase
+		.from<Item>('item')
+		.select('*')
+		.eq('productListId', productListId)
 }
 
 export const createItemsOnProductList = async (items: Item) => {
