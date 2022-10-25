@@ -1,6 +1,6 @@
 [build.environment]
-  NPM_FLAGS = "--version"
-  NODE_VERSION = "16"
+  NPM_FLAGS = "--prefix=/dev/null"
+  NODE_VERSION = "14"
 
 [build]
   publish = "dist"
@@ -10,3 +10,16 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    immutable
+    '''
