@@ -74,7 +74,7 @@ export function LandingLayout(props: LandingLayoutProps) {
 	return (
 		<>
 			<header class="p-5 border-dark-800 border-b-2 ">
-				<nav class="flex flex-row items-center justify-between container mx-auto max-w-7xl font-mulish xl:text-lg text-base">
+				<nav class="flex flex-row items-center justify-between container mx-auto max-w-5xl font-mulish xl:text-lg text-base">
 					<h1>
 						<NavLink
 							href="/"

@@ -12,13 +12,6 @@ import {
 import { supabase } from '~/lib/supabase'
 import { AuthSession } from '@supabase/supabase-js'
 
-function Separator() {
-	return (
-		<div class="flex items-center" aria-hidden="true">
-			<div class="w-full border-t border-dark-200" />
-		</div>
-	)
-}
 function classNames(...classes: (string | boolean | undefined)[]): string {
 	return classes.filter(Boolean).join(' ')
 }
@@ -55,13 +48,6 @@ function NavMenu(props: { handleSignOut: () => void }) {
 							class="absolute z-10 px-4 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0 lg:max-w-3xl"
 						>
 							<Menu class="overflow-hidden w-72 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-dark-800 flex flex-col space-y-1 p-1">
-								<MenuItem class="text-sm p-1 text-left rounded hover:bg-emerald-600 hover:text-white focus:outline-none focus:bg-emerald-600 focus:text-white">
-									<NavLink href="/home/list" activeClass="text-emerald-300font-bold">
-										Ver mi lista de compras
-									</NavLink>
-								</MenuItem>
-
-								<Separator />
 								<MenuItem
 									as="button"
 									class="text-sm p-1 text-left rounded flex flex-row items-center space-x-2 hover:bg-emerald-600 hover:text-white focus:outline-none focus:bg-emerald-600 focus:text-white"
@@ -104,7 +90,7 @@ export default function HomeOutlet() {
 	return (
 		<>
 			<header class="p-5 border-dark-800 border-b-2">
-				<nav class="flex flex-row items-center justify-between container mx-auto max-w-7xl font-mulish xl:text-lg text-base">
+				<nav class="flex flex-row items-center justify-between container mx-auto max-w-5xl font-mulish xl:text-lg text-base">
 					<h1>
 						<NavLink
 							href="/home"
@@ -116,15 +102,6 @@ export default function HomeOutlet() {
 						</NavLink>
 					</h1>
 					<ul class="xl:flex lg:flex hidden flex-row items-center space-x-5 ">
-						<li>
-							<NavLink
-								href="/home/list"
-								class="hover:bg-dark-700 duration-100 ease-in-out px-4 py-4 rounded-lg "
-								activeClass="text-emerald-300 font-bold"
-							>
-								Ver mi lista de compras
-							</NavLink>
-						</li>
 						<li>
 							<button
 								onClick={handleSignOut}

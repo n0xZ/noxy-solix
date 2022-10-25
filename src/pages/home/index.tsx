@@ -9,7 +9,7 @@ import { getProductsListFromDB, supabase } from '~/lib/supabase'
 
 export default function Home() {
 	const query = createQuery(
-		() => ['ProductListsByUserId'],
+		() => ['product-list-by-userId'],
 		async () => await getProductsListFromDB()
 	)
 	const [existingSession, setExistingSession] = createSignal<AuthSession | null>(
@@ -23,15 +23,21 @@ export default function Home() {
 	function openModal() {
 		setIsOpen(true)
 	}
+	const refetchList = () => {
+		query.refetch()
+	}
 	onMount(() => setExistingSession(supabase.auth.session()))
 	return (
 		<section class="h-full  space-y-5 ">
 			<Title>Solyx - Lista de productos</Title>
-			<aside class="w-full p-5 border-b-2 border-dark-800  container mx-auto flex flex-row items-center justify-end">
-				<button onClick={openModal}>Crear nueva lista</button>
+			<aside class="w-full p-5 border-b-2 border-dark-800  ">
+				<div class="container mx-auto flex flex-row items-center justify-end">
+					<button onClick={openModal}>Crear nueva lista</button>
+				</div>
 			</aside>
 			<CreateProductList
 				loggedUser={existingSession()?.user}
+				refetchList={refetchList}
 				isOpen={isOpen()}
 				closeModal={closeModal}
 			/>

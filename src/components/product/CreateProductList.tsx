@@ -20,11 +20,11 @@ const createProductValidator = zfd.formData({
 	title: z.string().min(3, { message: 'Campo requerido' }),
 })
 
-
 type Props = {
 	isOpen: boolean
 	closeModal: () => void
 	loggedUser: User | null | undefined
+	refetchList: () => void
 }
 
 export function CreateProductList(props: Props) {
@@ -34,6 +34,7 @@ export function CreateProductList(props: Props) {
 	const { isLoading, mutate } = createMutation(createProductList, {
 		onSuccess(data) {
 			toast.success('Lista de productos creada con éxito!')
+			props.refetchList()
 			props.closeModal()
 			return data
 		},
@@ -75,7 +76,7 @@ export function CreateProductList(props: Props) {
 						leaveFrom="opacity-100 scale-100"
 						leaveTo="opacity-0 scale-95"
 					>
-						<DialogPanel class="inline-block flex flex-col justify-between items-center w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-dark-300 text-light-50 shadow-xl rounded-2xl h-full">
+						<DialogPanel class="inline-block flex flex-col justify-between items-center  w-full p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-dark-300 text-light-50 shadow-xl rounded-2xl h-full">
 							<DialogTitle as="h3" class="text-lg font-medium leading-6 mb-12">
 								Crear nueva lista de productos
 							</DialogTitle>
