@@ -62,7 +62,7 @@ export default function ProductItemsByProductListId() {
 
 			<section class="h-full">
 				<h2 class="text-center xl:text-2xl text-lg mt-4 font-bold">
-					{listQuery.data && listQuery.data?.data?.[0].title}
+					{listQuery.data && listQuery.data?.data?.[0].title} (${totalPrice()})
 				</h2>
 				<Switch>
 					<Match when={itemsQuery.isLoading}>
@@ -86,9 +86,6 @@ export default function ProductItemsByProductListId() {
 					>
 						<>
 							<ItemList items={itemsQuery.data?.data!} />
-							<p class="mt-6 text-center font-bold">
-								Precio final actual: ${totalPrice()}
-							</p>
 						</>
 					</Match>
 				</Switch>
