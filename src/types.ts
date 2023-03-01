@@ -6,7 +6,7 @@ export type ProductList = {
 }
 
 export type Item = {
-	itemId?: string
+	itemId?: number
 	created_at: Date
 	name: string
 	amount: number
