@@ -11,6 +11,7 @@ import {
 	getProductListsById,
 } from '~/lib/supabase'
 import { ItemListSkeleton } from '~/components/item/item-list-skeleton'
+import { Title } from '@solidjs/meta'
 
 const CreateProductItem = lazy(
 	() => import('~/components/item/CreateProductItem')
@@ -42,6 +43,9 @@ export default function ProductItemsByProductListId() {
 	}
 	return (
 		<section class="h-screen">
+			<Title>
+				Noxy - Solix | Lista: {listQuery.data && listQuery.data?.data?.[0].title}
+			</Title>
 			<aside class="w-full p-5 border-b-2 border-dark-800  ">
 				<div class=" flex flex-row items-center justify-between container mx-auto max-w-5xl">
 					<Link href="/home" class="flex flex-row items-center space-x-3">
