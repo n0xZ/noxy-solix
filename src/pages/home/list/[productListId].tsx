@@ -10,6 +10,7 @@ import {
 	getProductItemsByProductListId,
 	getProductListsById,
 } from '~/lib/supabase'
+import { ItemListSkeleton } from '~/components/item/item-list-skeleton'
 
 const CreateProductItem = lazy(
 	() => import('~/components/item/CreateProductItem')
@@ -62,11 +63,17 @@ export default function ProductItemsByProductListId() {
 
 			<section class="h-full">
 				<h2 class="text-center xl:text-2xl text-lg mt-4 font-bold">
-					{listQuery.data && listQuery.data?.data?.[0].title} (${totalPrice()})
+					{!itemsQuery.isLoading ? (
+						<>
+							{listQuery.data && listQuery.data?.data?.[0].title} (${totalPrice()})
+						</>
+					) : (
+						'Cargando productos. Por favor espere...'
+					)}
 				</h2>
 				<Switch>
 					<Match when={itemsQuery.isLoading}>
-						<p>Cargando items de la lista de productos...</p>
+						<ItemListSkeleton />
 					</Match>
 					<Match when={itemsQuery.isError}>
 						<p>
