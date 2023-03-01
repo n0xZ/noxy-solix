@@ -4,6 +4,7 @@ import { AuthSession } from '@supabase/supabase-js'
 import { createQuery } from '@tanstack/solid-query'
 import { createSignal, Match, onMount, Switch } from 'solid-js'
 import { CreateProductList } from '~/components/product/CreateProductList'
+import { ProductListSkeleton } from '~/components/product/product-list-skeleton'
 import ProductsList from '~/components/product/ProductsList'
 import { getProductsListFromDB, supabase } from '~/lib/supabase'
 
@@ -44,7 +45,12 @@ export default function Home() {
 			<section class="  w-full h-full text-center mt-4">
 				<Switch>
 					<Match when={query.isLoading}>
-						<p>Cargando lista de productos...</p>
+						<>
+							<h2 class="text-center mt-3 mb-3 text-3xl font-bold">
+								Cargando lista de productos..
+							</h2>
+							<ProductListSkeleton />
+						</>
 					</Match>
 					<Match when={query.isError}>
 						<p>
@@ -59,8 +65,10 @@ export default function Home() {
 						when={query.isSuccess && query.data && query.data.data?.length !== 0}
 					>
 						<>
-						<h2 class='text-center mt-3 mb-3 text-3xl font-bold'>Lista de productos</h2>
-						<ProductsList productsList={query.data?.data!} />
+							<h2 class="text-center mt-3 mb-3 text-3xl font-bold">
+								Lista de productos
+							</h2>
+							<ProductsList productsList={query.data?.data!} />
 						</>
 					</Match>
 				</Switch>
