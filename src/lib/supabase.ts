@@ -43,3 +43,6 @@ export const getProductItemsByProductListId = async (productListId: string) => {
 export const createItemsOnProductList = async (items: Item) => {
 	return await supabase.from('item').insert(items)
 }
+export const deleteItemOnProductListById = async (id: number) => {
+	return await supabase.from('item').delete().eq('itemId', id)
+}
