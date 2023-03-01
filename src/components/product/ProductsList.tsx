@@ -7,7 +7,7 @@ type Props = {
 }
 export default function ProductsList(props: Props) {
 	return (
-		<article class="grid xl:grid-cols-3 grid-cols-1 gap-6 place-items-center container mx-auto ">
+		<article class="flex flex-col items-center items-center gap-7 container mx-auto  mt-6">
 			<For each={props.productsList}>
 				{(prod) => <ProductListItem productListItem={prod} />}
 			</For>

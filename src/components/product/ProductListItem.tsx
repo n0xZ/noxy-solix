@@ -9,9 +9,9 @@ export default function ProductListItem(props: Props) {
 	return (
 		<Link
 			href={`/home/list/${props.productListItem.productListId}`}
-			class="h-24 w-72 rounded-md border-2 border-dark-800 flex flex-row flex-wrap justify-center items-center text-center p-2 space-x-2"
+			class="h-40 w-full   max-w-xl  rounded-md bg-dark-800 flex flex-row  text-center  p-6"
 		>
-			<p>{props.productListItem.title}</p>
+			<h3 class="text-xl font-bold">{props.productListItem.title}</h3>
 		</Link>
 	)
 }

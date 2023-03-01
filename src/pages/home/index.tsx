@@ -30,7 +30,7 @@ export default function Home() {
 	return (
 		<section class="h-full  space-y-5 ">
 			<Title>Solyx - Lista de productos</Title>
-			<aside class="w-full p-5 border-b-2 border-dark-800  ">
+			<aside class="w-full max-w-5xl container mx-auto p-5 border-b-2 border-dark-800  ">
 				<div class="container mx-auto flex flex-row items-center justify-end">
 					<button onClick={openModal}>Crear nueva lista</button>
 				</div>
@@ -41,7 +41,7 @@ export default function Home() {
 				isOpen={isOpen()}
 				closeModal={closeModal}
 			/>
-			<section class="flex h-full xl:flex-row  flex-col items-center justify-center text-center">
+			<section class="  w-full h-full text-center mt-4">
 				<Switch>
 					<Match when={query.isLoading}>
 						<p>Cargando lista de productos...</p>
@@ -58,7 +58,10 @@ export default function Home() {
 					<Match
 						when={query.isSuccess && query.data && query.data.data?.length !== 0}
 					>
+						<>
+						<h2 class='text-center mt-3 mb-3 text-3xl font-bold'>Lista de productos</h2>
 						<ProductsList productsList={query.data?.data!} />
+						</>
 					</Match>
 				</Switch>
 			</section>
