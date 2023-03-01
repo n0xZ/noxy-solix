@@ -71,7 +71,7 @@ export default function Register() {
 				>
 					<form
 						onSubmit={onSubmit}
-						class=" p-20 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5 h-full"
+						class=" xl:p-0 p-3 flex flex-col items-center justify-center items-center w-full   xl:max-w-2xl lg:max-w-lg md:max-w-lg container mx-auto space-y-5 h-full"
 					>
 						<h2 class="text-center xl:text-3xl text-lg font-bold mb-3">
 							Unete ya a Solyx!
